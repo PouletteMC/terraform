@@ -1,3 +1,7 @@
+resource "aws_iam_user" "user" {
+  name = "iam-${var.account_name}"
+}
+
 resource "aws_iam_group" "group" {
   name = "iam-${var.account_name}"
 }
@@ -12,6 +16,6 @@ resource "aws_iam_group_membership" "membership" {
   group = aws_iam_group.group.name
 
   users = [
-    var.iam_user_name != "" ? var.iam_user_name : "iam-${var.account_name}"
+    aws_iam_user.user.name
   ]
 }

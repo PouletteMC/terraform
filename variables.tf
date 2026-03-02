@@ -9,12 +9,6 @@ variable "account_name" {
   type        = string
 }
 
-variable "iam_user_name" {
-  description = "Name of the existing IAM user"
-  type        = string
-  default     = ""
-}
-
 variable "instance_type" {
   description = "EC2 instance type"
   type        = string

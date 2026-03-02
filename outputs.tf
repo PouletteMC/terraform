@@ -1,3 +1,8 @@
+output "iam_user_name" {
+  description = "IAM user name"
+  value       = aws_iam_user.user.name
+}
+
 output "iam_group_name" {
   description = "IAM group name"
   value       = aws_iam_group.group.name
