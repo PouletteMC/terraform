@@ -1,3 +1,102 @@
+resource "aws_cloudwatch_dashboard" "cloudtrail" {
+  dashboard_name = "cloudtrail-${var.account_name}"
+
+  dashboard_body = jsonencode({
+    widgets = [
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 8
+        height = 6
+        properties = {
+          title   = "All API Calls"
+          view    = "timeSeries"
+          region  = var.aws_region
+          metrics = [["CloudTrailMetrics", "AllApiCallCount"]]
+          period  = 300
+          stat    = "Sum"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 8
+        y      = 0
+        width  = 8
+        height = 6
+        properties = {
+          title   = "Console Sign-In Events"
+          view    = "timeSeries"
+          region  = var.aws_region
+          metrics = [["CloudTrailMetrics", "ConsoleSignInCount"]]
+          period  = 300
+          stat    = "Sum"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 16
+        y      = 0
+        width  = 8
+        height = 6
+        properties = {
+          title   = "Unauthorized API Calls"
+          view    = "timeSeries"
+          region  = var.aws_region
+          metrics = [["CloudTrailMetrics", "UnauthorizedApiCallCount"]]
+          period  = 300
+          stat    = "Sum"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 0
+        y      = 6
+        width  = 8
+        height = 6
+        properties = {
+          title   = "Root Account Usage"
+          view    = "timeSeries"
+          region  = var.aws_region
+          metrics = [["CloudTrailMetrics", "RootAccountUsageCount"]]
+          period  = 300
+          stat    = "Sum"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 8
+        y      = 6
+        width  = 8
+        height = 6
+        properties = {
+          title   = "IAM Changes"
+          view    = "timeSeries"
+          region  = var.aws_region
+          metrics = [["CloudTrailMetrics", "IAMChangeCount"]]
+          period  = 300
+          stat    = "Sum"
+        }
+      },
+      {
+        type   = "metric"
+        x      = 16
+        y      = 6
+        width  = 8
+        height = 6
+        properties = {
+          title   = "Security Group Changes"
+          view    = "timeSeries"
+          region  = var.aws_region
+          metrics = [["CloudTrailMetrics", "SecurityGroupChangeCount"]]
+          period  = 300
+          stat    = "Sum"
+        }
+      }
+    ]
+  })
+}
+
 resource "aws_sns_topic" "alerts" {
   name = "cloudwatch-alerts-${var.account_name}"
 
