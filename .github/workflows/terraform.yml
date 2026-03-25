@@ -30,6 +30,7 @@ jobs:
       TF_VAR_account_name: eliot
       TF_VAR_key_name: eliot-terraform
       TF_VAR_s3_bucket_name: eliot-terraform-bucket
+      TF_VAR_alarm_email: ${{ secrets.ALARM_EMAIL }}
 
     steps:
       - name: Checkout

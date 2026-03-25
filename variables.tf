@@ -24,3 +24,9 @@ variable "s3_bucket_name" {
   description = "S3 bucket name (must be globally unique)"
   type        = string
 }
+
+variable "alarm_email" {
+  description = "Email address for CloudWatch alarm notifications (SNS)"
+  type        = string
+  default     = ""
+}
