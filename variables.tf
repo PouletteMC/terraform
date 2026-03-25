@@ -30,3 +30,21 @@ variable "alarm_email" {
   type        = string
   default     = ""
 }
+
+variable "rds_db_name" {
+  description = "Initial database name for RDS MySQL"
+  type        = string
+  default     = "mydb"
+}
+
+variable "rds_username" {
+  description = "Master username for RDS MySQL"
+  type        = string
+  default     = "admin"
+}
+
+variable "rds_password" {
+  description = "Master password for RDS MySQL"
+  type        = string
+  sensitive   = true
+}

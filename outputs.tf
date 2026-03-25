@@ -57,3 +57,23 @@ output "sns_topic_arn" {
   description = "SNS topic ARN for CloudWatch alerts"
   value       = aws_sns_topic.alerts.arn
 }
+
+output "rds_endpoint" {
+  description = "RDS MySQL endpoint"
+  value       = aws_db_instance.mysql.endpoint
+}
+
+output "rds_connect_command" {
+  description = "Commande MySQL pour se connecter depuis EC2"
+  value       = "mysql -h ${aws_db_instance.mysql.address} -P 3306 -u ${var.rds_username} -p"
+}
+
+output "dynamodb_efrei_table_name" {
+  description = "Nom de la table DynamoDB du lab"
+  value       = aws_dynamodb_table.efrei.name
+}
+
+output "dynamodb_efrei_table_arn" {
+  description = "ARN de la table DynamoDB (nécessaire pour export S3)"
+  value       = aws_dynamodb_table.efrei.arn
+}
